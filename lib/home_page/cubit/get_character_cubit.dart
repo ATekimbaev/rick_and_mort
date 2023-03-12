@@ -16,14 +16,13 @@ class GetCharacterCubit extends Cubit<GetCharacterState> {
 
     try {
       final model = await repo.getCharacterData(name: name ?? '');
-      emit(GetCharacterSuccess(model: model));
+      emit(GetCharacterSuccess(model: model, startPposition: true));
     } catch (e) {
       emit(GetCharacterError(errorText1: e.toString()));
     }
   }
 
   Future nextPage(String path) async {
-    emit(LoadingState());
     await Future.delayed(const Duration(seconds: 1));
     try {
       final model = await repo.nextPage(path: path);

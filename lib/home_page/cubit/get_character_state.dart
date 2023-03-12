@@ -12,6 +12,7 @@ class GetCharacterError extends GetCharacterState {
 class LoadingState extends GetCharacterState {}
 
 class GetCharacterSuccess extends GetCharacterState {
+  final bool startPposition;
   final CharacterModel model;
-  GetCharacterSuccess({required this.model});
+  GetCharacterSuccess({required this.model, this.startPposition = false});
 }

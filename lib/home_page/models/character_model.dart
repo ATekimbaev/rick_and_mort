@@ -1,13 +1,23 @@
 class CharacterModel {
   Info? info;
-  List<Results>? results;
+  List<Results>? results = [];
 
   CharacterModel({this.info, this.results});
 
   CharacterModel.fromJson(Map<String, dynamic> json) {
     info = json['info'] != null ? new Info.fromJson(json['info']) : null;
     if (json['results'] != null) {
-      results = <Results>[];
+      results ??= <Results>[];
+      json['results'].forEach((v) {
+        results!.add(new Results.fromJson(v));
+      });
+    }
+  }
+
+  void fromJson(Map<String, dynamic> json) {
+    info = json['info'] != null ? new Info.fromJson(json['info']) : null;
+    if (json['results'] != null) {
+      results ??= <Results>[];
       json['results'].forEach((v) {
         results!.add(new Results.fromJson(v));
       });
